@@ -1,0 +1,4 @@
+sudo rmmod pcspkr
+sudo rmmod snd_pcscp
+
+Do this to stop ly display manager from beeping

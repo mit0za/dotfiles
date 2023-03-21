@@ -1,0 +1,81 @@
+{
+  "layer": "top",
+    "modules-left": ["custom/arch", "wlr/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["backlight", "pulseaudio", "bluetooth", "custom/mem", "network", "battery"],
+    "custom/arch": {
+      "format": "  ",
+      "tooltip": false,
+      "on-click": "sh $HOME/.config/rofi/bin/powermenu"
+    },
+
+    "wlr/workspaces": {
+      "format": "{name}",
+      "tooltip": false,
+      "all-outputs": true
+    },
+
+    "clock": {
+      "format": "<span color='#cba6f7'> </span>{:%I:%M %p}",
+    },
+
+    "custom/date": {
+      /* "format": "<span>{:%a:%b}</span>", */
+      "format": "{:%I:%M %p}",
+    },
+
+    "backlight": {
+      "device": "intel_backlight",
+      "format": "<span color='#cba6f7'>{icon}</span> {percent}%",
+      "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
+    "pulseaudio": {
+      "format": "<span color='#cba6f7'>{icon}</span> {volume}%",
+      "format-muted": "",
+      "tooltip": false,
+      "format-icons": {
+        "headphone": "",
+        "default": ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]
+      },
+      "scroll-step": 1,
+    },
+
+    "custom/mem": {
+        "format": "<span color='#cba6f7'></span> {} ",
+        "interval": 3,
+        "exec": "free -h | awk '/Mem:/{printf $3}'",
+        "tooltip": false,
+    },
+
+    "bluetooth": {
+      "format": "<span color='#cba6f7'></span> {status}",
+      "format-disabled": "", // an empty format will hide the module
+      "format-connected": "<span color='#cba6f7'></span> {num_connections}",
+      "tooltip-format": "{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}   {device_address}"
+    },
+
+    "network": {
+      "interface": "wlan0",
+      "format": "{ifname}",
+      "format-wifi": "<span color='#cba6f7'> </span>{essid}",
+      "format-ethernet": "{ipaddr}/{cidr} ",
+      "format-disconnected": "<span color='#cba6f7'>󰖪 </span>No Network",
+      "tooltip": false,
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% <span color='#cba6f7'>{icon}</span>",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+	"on-update": "~/.config/waybar/scripts/check_battery.sh",
+    },
+}
+
