@@ -1,0 +1,41 @@
+#!/bin/sh
+
+autostart="nm-applet xfce4-power-manager"
+for program in $autostart; do
+	pidof -s "$program" || setsid -f "$program"
+done >/dev/null 2>&1
+
+# Applets :
+# nm-applet &
+# blueman-applet &
+# volumeicon &
+# xfce4-power-manager &
+
+# Polkit :
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Keybord auto-repeat :
+xset r rate 300 50 &
+
+# Clipordmanager :
+clipmenud &
+
+# Wallpaper :
+nitrogen --restore &
+
+# conky
+# killall conky &
+# conky -c ~/.config/conky/Gotham/Gotham.conf &
+# conky -c ~/.config/conky/Gotham/Gotham2.conf &
+
+# Sevices info :
+echo "false" >/tmp/blue_light_state
+
+# Compositor  :
+autostart="picom"
+for program in $autostart; do
+	pidof -s "$program" || setsid -f "$program"
+done >/dev/null 2>&1
+
+# Updates :
+notify-send -t 8000 "You have $(checkupdates | wc -l) update 📦" &
