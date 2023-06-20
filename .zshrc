@@ -5,13 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Created by newuser for 5.9
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Stop ly display beep
+# Stop beep sounds
 unsetopt beep
 
 # History in cache directory:
@@ -19,24 +13,46 @@ HISTFILE=~/.histfile
 HISTSIZE=9000000
 SAVEHIST=9000000
 
+#Enable colors 
+#autoload -U colors && colors
+#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
-_comp_options+=(globdots)
-
-# Synax zsh-syntax-highlighting
-source /home/snoxii/Downloads/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# zsh-autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # vi mode
-#bindkey -v
+#bindkey -v 
+#export KEYTIMEOUT=1
 
-# zvm | vim mode baby
+# Syntax highlighting
+# source /home/mitoza/Downloads/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Fast syntax highlighting
+source $HOME/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+# Auto suggestion
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Apply antigen
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# Vi mode
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
+# zsh-completions
+fpath=($HOME/.zsh/zsh-completions/src $fpath)
+
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Alias
-alias ls='lsd'
+#alias sudo='sudo '
+alias ls='lsd -a'
+alias vim='nvim'
+alias py='python3'
+alias shutdown='sudo shutdown now'
+
