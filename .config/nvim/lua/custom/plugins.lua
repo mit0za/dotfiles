@@ -1,5 +1,9 @@
 local plugins = {
     {
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+    },
+    {
       "christoomey/vim-tmux-navigator",
       lazy = false,
     },

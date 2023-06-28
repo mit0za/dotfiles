@@ -13,21 +13,10 @@ HISTFILE=~/.histfile
 HISTSIZE=9000000
 SAVEHIST=9000000
 
-#Enable colors 
-#autoload -U colors && colors
-#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-
-# vi mode
-#bindkey -v 
-#export KEYTIMEOUT=1
-
-# Syntax highlighting
-# source /home/mitoza/Downloads/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Fast syntax highlighting
 source $HOME/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
@@ -44,6 +33,13 @@ source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # zsh-completions
 fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
+# Better cd
+eval "$(zoxide init zsh)"
+
+# The fuck
+eval $(thefuck --alias)
+# You can use whatever you want as an alias, like for Mondays:
+eval $(thefuck --alias FUCK)
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
