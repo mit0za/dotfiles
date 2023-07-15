@@ -1,2 +1,4 @@
-Xft.dpi: 160
+# 160
+Xft.dpi: 140
 URxvt*font: xft:Hack Nerd Font:style=Regular:size=11
+

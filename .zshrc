@@ -1,11 +1,8 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# .zshrc
+autoload -U promptinit; promptinit
+prompt pure
 
-# Stop beep sounds
+# Stop ly display beep
 unsetopt beep
 
 # History in cache directory:
@@ -13,42 +10,36 @@ HISTFILE=~/.histfile
 HISTSIZE=9000000
 SAVEHIST=9000000
 
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
 
-# Fast syntax highlighting
-source $HOME/.zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
-# Auto suggestion
+# Synax fast highlighting
+source ~/path/to/fsh/fast-syntax-highlighting.plugin.zsh
+
+
+# zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Apply antigen
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 
-# Vi mode
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# zvm | vim mode baby
+source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
 
 # zsh-completions
-fpath=($HOME/.zsh/zsh-completions/src $fpath)
+fpath=($HOME/Downloads/git/zsh-completions/src $fpath)
 
-# Better cd
-eval "$(zoxide init zsh)"
+# fuzzy finder
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 
-# The fuck
-eval $(thefuck --alias)
-# You can use whatever you want as an alias, like for Mondays:
-eval $(thefuck --alias FUCK)
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Alias
-#alias sudo='sudo '
-alias ls='lsd -a'
+alias ls='lsd'
 alias vim='nvim'
-alias py='python3'
-alias shutdown='sudo shutdown now'
-
+alias reboot= 'sudo reboot'
