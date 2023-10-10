@@ -1,5 +1,26 @@
 local plugins = {
     {
+      "mfussenegger/nvim-jdtls",
+    },
+    {
+      "CRAG666/code_runner.nvim",
+      config = function ()
+        require('code_runner').setup({
+          filetype = {
+            java = {"cd '$dir' && javac $fileName && java $fileNameWithoutExt"},
+            python = "python3 -u",
+            typescript = "deno run",
+            rust = {
+            "cd $dir &&",
+            "rustc $fileName &&",
+            "$dir/$fileNameWithoutExt"
+       },
+      },
+    })
+      end,
+      lazy = false,
+    },
+    {
       "iamcco/markdown-preview.nvim",
       run = function() vim.fn["mkdp#util#install"]() end,
     },
@@ -63,7 +84,12 @@ local plugins = {
         "mypy",
         "ruff",
         "black", -- an auto formatter
-        "debugpy"
+        "debugpy",
+        "jdtls",
+        "stylua",
+        "java-language-server",
+        "lua-language-server",
+        "djlint"
       },
     },
   },
