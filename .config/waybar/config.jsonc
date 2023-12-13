@@ -95,14 +95,16 @@
     "tray": {
         "icon-size": 14,
         "spacing": 8,
-        "show-passive-items": false
+        "show-passive-items": true
     },
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip": false,
+        "tooltip": true,
         "interval": 60,
-        "format": "{:󰥔  %I:%M%p |    %b %Y}",
-        "max-length": 25,
+        "format": "{:󰥔  %I:%M%p |   %d|%A -- %m|%b %Y}",
+        "format-active":"{:󰥔  %I:%M%p |   %DD}",
+        "on-click": "activate",
+        "max-length": 90,
         "on-click": "sleep 0.1; foot calcure"
     },
     "cpu": {
