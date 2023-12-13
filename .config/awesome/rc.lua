@@ -1,47 +1,35 @@
--- Standard awesome library
-pcall(require, "luarocks.loader")
+-- To Do:
+-- Panel redesign
+-- Widget placement userconf
+-- Theme reloading
+-- Multihead support
+-- Refactoring, always
+
+-- Errors
+
+require("naughty").connect_signal("request::display_error", function(message, startup)
+    require("naughty").notification {
+        urgency = "critical",
+        title   = "Error"..(startup and " during startup!" or "!"),
+        message = message
+    }
+end)
+
+-- User
+
+local r = assert(io.open(".config/awesome/json/user.json", "r"))
+local table = r:read("*all")
+r:close()
+
+user = require("json.json").decode(table)
+
+-- Config
+
 require("awful.autofocus")
-local awful = require("awful")
--- Theme handling library
-local beautiful = require("beautiful")
+require("signal")
+require("config")
+require("theme")
 
--- # Themes :
-local theme = require("themes")
-beautiful.init(theme)
-awful.spawn.with_shell("feh --bg-fill $HOME/.config/awesome/wallpaper.jpg")
+-- Autostart
 
--- ### Configurations ### --
-
--- # Keybindings :
-require("configurations.keybindings")
-
--- # Layouts :
-require("configurations.layouts")
-
--- # Rules :
-require("configurations.rules")
-
--- # Signals :
-require("signals")
-
--- ### UI ### --
-
--- # Notifications :
-require("ui.notifications")
-
--- # Titlebars :
-require("ui.titlebar")
-
--- # Menu :
-require("ui.menu")
-
--- # Bar :
-require("ui.bar")
-
-
--- Autorun at startup
-awful.spawn.with_shell("bash ~/.config/awesome/configurations/autostart")
-
---- Enable for lower memory consumption
-collectgarbage("setpause", 110)
-collectgarbage("setstepmul", 1000)
+require("awful").spawn.with_shell("~/.config/awesome/autostart")

@@ -11,19 +11,10 @@ M.dap_python = {
   plugin = true,
   n = {
     ["<leader>dpr"] = {
-      function ()
+      function()
         require('dap-python').test_method()
-      end,
+      end
     }
-  }
-}
-
-M.general = {
-  n = {
-    ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left" },
-    ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right" },
-    ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down" },
-    ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up" },
   }
 }
 
